@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "402077889561",
+    "project_id": "latihan-22312092",
+    "storage_bucket": "latihan-22312092.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402077889561:android:a041be50a6a203b6c5a688",
+        "android_client_info": {
+          "package_name": "com.example.myapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV9wt0q95LeVnaBpCzwZF-TSN8Z9goBXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402077889561:android:9e7aca19562be76cc5a688",
+        "android_client_info": {
+          "package_name": "com.galuh"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV9wt0q95LeVnaBpCzwZF-TSN8Z9goBXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
