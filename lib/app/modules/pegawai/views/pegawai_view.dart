@@ -1,10 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart'; // Pastikan impor Firestore
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myapp/app/modules/pegawai/controllers/pegawai_controller.dart';
 import 'package:myapp/app/modules/pegawai/views/pegawai_update_view.dart';
 
 class PegawaiView extends GetView<PegawaiController> {
+  // Inisialisasi controller
+  final PegawaiController controller = Get.put(PegawaiController());
+
   void showOption(String id) async {
     await Get.dialog(
       SimpleDialog(
@@ -41,47 +44,44 @@ class PegawaiView extends GetView<PegawaiController> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot<Object?>>(
-      stream: Get.put(PegawaiController()).streamData(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.active) {
-          // Mengambil data dari Firestore
-          var listAllDocs = snapshot.data?.docs ?? [];
-          return listAllDocs.isNotEmpty
-              ? ListView.builder(
-                  itemCount: listAllDocs.length,
-                  itemBuilder: (context, index) {
-                    var data =
-                        listAllDocs[index].data() as Map<String, dynamic>;
-                    return ListTile(
-                      leading: CircleAvatar(
-                        child: Text('${index + 1}'),
-                        backgroundColor:
-                            const Color.fromARGB(255, 248, 248, 248),
-                      ),
-                      title: Text("${data["nama"]}"), // Nama pegawai
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("ID Pegawai: ${data["id_pegawai"]}"),
-                          Text("Jabatan: ${data["jabatan"] ?? '-'}"),
-                        ],
-                      ),
-                      trailing: IconButton(
-                        onPressed: () => showOption(listAllDocs[index].id),
-                        icon: const Icon(Icons.more_vert),
-                      ),
-                    );
-                  },
-                )
-              : const Center(
-                  child: Text("Data Kosong"),
+    return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+  stream: controller.streamData(),
+  builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.active) {
+      var listAllDocs = snapshot.data?.docs ?? [];
+      return listAllDocs.isNotEmpty
+          ? ListView.builder(
+              itemCount: listAllDocs.length,
+              itemBuilder: (context, index) {
+                var data = listAllDocs[index].data();
+                return ListTile(
+                  leading: CircleAvatar(
+                    child: Text('${index + 1}'),
+                  ),
+                  title: Text("${data["nama_karyawan"]}"),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("No Karyawan: ${data["no_karyawan"]}"),
+                      Text("Jabatan: ${data["jabatan_karyawan"]}"),
+                    ],
+                  ),
+                  trailing: IconButton(
+                    onPressed: () => showOption(listAllDocs[index].id),
+                    icon: const Icon(Icons.more_vert),
+                  ),
                 );
-        }
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
+              },
+            )
+          : const Center(
+              child: Text("Data Kosong"),
+            );
+    }
+    return const Center(
+      child: CircularProgressIndicator(),
     );
+  },
+);
+
   }
 }

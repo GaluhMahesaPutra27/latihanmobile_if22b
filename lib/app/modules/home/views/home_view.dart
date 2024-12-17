@@ -48,7 +48,7 @@ class _DashboardAdminState extends State<DashboardAdmin> {
       'add': () => DosenAddView()
     },
     {
-      'title': 'Data Pegawai',
+      'title': 'Data Karyawan',
       'view': PegawaiView(),
       'add': () => PegawaiAddView()
     },
@@ -153,7 +153,7 @@ class _DashboardAdminState extends State<DashboardAdmin> {
               Get.back();
             },
             leading: const Icon(Icons.people),
-            title: const Text('Data Pegawai'),
+            title: const Text('Karyawan 22312092'),
             trailing: const Icon(Icons.navigate_next),
             iconColor: Colors.blue,
             textColor: Colors.blue,

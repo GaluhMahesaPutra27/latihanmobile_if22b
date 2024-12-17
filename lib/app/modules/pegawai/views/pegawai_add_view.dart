@@ -10,50 +10,37 @@ class PegawaiAddView extends GetView<PegawaiController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tambah Pegawai'),
-        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            // ID Pegawai
+            // No Karyawan
             TextField(
-              controller: controller.cIdPegawai,
-              autocorrect: false,
-              textInputAction: TextInputAction.next,
-              decoration: const InputDecoration(labelText: "ID Pegawai"),
+              controller: controller.cNoKaryawan,
+              decoration: const InputDecoration(labelText: 'No Karyawan'),
             ),
             const SizedBox(height: 10),
-            // Nama
+            // Nama Karyawan
             TextField(
-              controller: controller.cNama,
-              textInputAction: TextInputAction.next,
-              decoration: const InputDecoration(labelText: "Nama"),
+              controller: controller.cNamaKaryawan,
+              decoration: const InputDecoration(labelText: 'Nama Karyawan'),
             ),
             const SizedBox(height: 10),
-            // Alamat
+            // Jabatan Karyawan
             TextField(
-              controller: controller.cAlamat,
-              textInputAction: TextInputAction.next,
-              decoration: const InputDecoration(labelText: "Alamat"),
+              controller: controller.cJabatanKaryawan,
+              decoration: const InputDecoration(labelText: 'Jabatan Karyawan'),
             ),
-            const SizedBox(height: 10),
-            // Jabatan
-            TextField(
-              controller: controller.cJabatan,
-              textInputAction: TextInputAction.done,
-              decoration: const InputDecoration(labelText: "Jabatan"),
-            ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             // Tombol Simpan
             ElevatedButton(
               onPressed: () => controller.addData(
-                controller.cIdPegawai.text, // id_pegawai
-                controller.cNama.text,      // nama
-                controller.cAlamat.text,    // alamat
-                controller.cJabatan.text,   // jabatan
+                controller.cNoKaryawan.text,
+                controller.cNamaKaryawan.text,
+                controller.cJabatanKaryawan.text,
               ),
-              child: const Text("Simpan"),
+              child: const Text('Simpan'),
             ),
           ],
         ),
