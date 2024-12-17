@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:myapp/app/routes/app_pages.dart';
 
 class AuthController extends GetxController {
@@ -98,6 +99,33 @@ class AuthController extends GetxController {
     } else {
       Get.defaultDialog(
           title: "Terjadi kesalahan", middleText: "Email tidak valid");
+    }
+  }
+
+  void LoginGoole() async {
+    try {
+      GoogleSignIn _googleSignIn = GoogleSignIn();
+      GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:856277703.
+      if (googleUser != null) {
+        final GoogleSignInAuthentication googleAuth =
+            await googleUser.authentication;
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+        await FirebaseAuth.instance.signInWithCredential(credential);
+        Get.offAllNamed(Routes.HOME);
+        print(googleUser);
+      } else {
+        throw "Belum memiliki akun google";
+      }
+    } catch (error) {
+      print(error);
+      Get.defaultDialog(
+        title: "Terjadi Kesalahan",
+        middleText: "${error.toString()}",
+      );
     }
   }
 }

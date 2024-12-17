@@ -42,15 +42,43 @@ class LoginView extends GetView<LoginController> {
               height: 10,
             ),
             ElevatedButton(
-              onPressed: () {
-                cAuth.login(controller.cEmail.text, controller.cPass.text);
-              },
-              child: Text("Login"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 105, 150, 34),
-                foregroundColor: Colors.white,
-              ),
-            ),
+  onPressed: () {
+    cAuth.login(controller.cEmail.text, controller.cPass.text);
+  },
+  child: Text("Login"),
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.green[700],
+    foregroundColor: Colors.white,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10),
+    ),
+    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+  ),
+),
+
+SizedBox(height: 20),
+
+ElevatedButton.icon(
+  onPressed: () => cAuth.LoginGoole(),
+
+
+    // Handle Google login
+  
+ 
+  label: Text("Login dengan Google"),
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.white,
+    foregroundColor: Colors.black,
+    side: BorderSide(
+      color: const Color.fromARGB(255, 19, 212, 19),
+      width: 1.5,
+    ),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(30),
+    ),
+    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+  ),
+),
             SizedBox(
               height: 10,
             ),
@@ -84,3 +112,4 @@ class LoginView extends GetView<LoginController> {
     );
   }
 }
+ 
